@@ -1,9 +1,6 @@
 <?php
-
-$size = $_POST['size'];
-$price = $_POST['price'];
-$amount = $_POST['amount'];
-$product_id = $_SESSION['itemId'];
+include 'connection.php';
+session_start();
 
 if(empty($size) || !isset($size)) {
     $error ['size'] = 'Size is empty';
@@ -15,16 +12,17 @@ if(empty($amount) || !isset($amount)){
     $error ['amount'] = 'Amount is empty';
 } 
 
-$sql = "INSERT INTO food_size (size, amount, price, product_id) VALUES (?,?,?,?)";
+$size = $_POST['size'];
+$price = $_POST['price'];
+$amount = $_POST['amount'];
+$product_id = $_SESSION['itemId'];
 
-$stmt = $conn->prepare($prepareSql);
-$role = 'normal';
-$stmt->bind_param("sisi", $size, $amount, $price, $product_id);
-$stmt->execute();
+$sql = "INSERT INTO food_size (size, amount, price, product_id) VALUES ('$size', '$amount', '$price', '$product_id')";
+$result = $conn->query($sql);
 
-$conn->close();
-
-
-
-
+if ($result == 1){ 
+$_SESSION['saved'] = 'Saved';
+header('Location: addProductInfo.php');
+}
 ?>
+

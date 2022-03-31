@@ -15,38 +15,39 @@
     <?php require 'nav.php' ?>
     
     <br><br>
-             <div class="container">
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-4">
-                        <h1><b>ADD PRODUCT INFORMATION</b></h1>
+            <div class="container">
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-4">
+                    <h1><b>ADD PRODUCT INFORMATION</b></h1>
+                    <?php 
+                        if (isset($_SESSION) && isset($_SESSION['saved'])){ ?>
+                            <p style="text-align: center; color:red;">Saved item</p>
+                            <?php }?>
 
-                        <form method="post" action="addProductInfoSubmit.php" autocomplete="off" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="size" id="size" 
-                            placeholder="Product size" required="true">
-                        </div>
-
-                        <div class="form-group">
-                        <input type="text" class="form-control" name="price" id="price" 
-                            placeholder="Product price" required="true">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="number" class="form-control" name="amount" id="amount" 
-                            placeholder="Number of product" required="true">
-                        </div>
-                       
-                        <div class="form-group">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Save</button>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Save">
-                        </div>
-                        </form>
+                    <form method="post" action="addProductInfoSubmit.php" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="size" id="size" 
+                        placeholder="Product size" required="true">
                     </div>
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" name="price" id="price" 
+                        placeholder="Product price" required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="amount" id="amount" 
+                        placeholder="Number of product" required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Save">
+                    </div>
+                    
+                    </form>
                 </div>
             </div>
+        </div>
     </body>
 </html>
 

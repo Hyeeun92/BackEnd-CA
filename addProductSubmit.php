@@ -1,6 +1,9 @@
 <?php
 include 'connection.php';
-
+session_start();
+if (isset($_SESSION['saved'])){
+    unset($_SESSION['saved']);
+}
 
 if(empty($name) || !isset($name)) {
     $error ['name'] = 'Name is empty';
@@ -34,7 +37,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $res = mysqli_fetch_array($result);
 $id = $res['id'];
-echo $id;
 
 session_start();
 $_SESSION['itemId'] = $id;

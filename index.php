@@ -6,35 +6,58 @@
         <title>Pet Store</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- latest compiled and minified CSS -->
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
-        <!-- jquery library -->
         <script type="text/javascript" src="bootstrap/js/jquery-3.2.1.min.js"></script>
-        <!-- Latest compiled and minified javascript -->
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- External CSS -->
         <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
+
     <body>
     <?php
       require 'nav.php';
+      session_start();
+      if (isset($_SESSION['itemId'])){
+        unset($_SESSION['itemId']);
+      }
     ?>
-    <div class="container"  style="margin-top: 30px;">
+    <br><br>
+    <div class="container">
       <div class="row">
-          <div class="col-md-3 col-sm-6">
-              <div class="thumbnail">
-                  <a href="cart.php">
-                      <img src="" alt="">
-                  </a>
-                  <center>
-                      <div class="caption">
-                          <h3>Cannon EOS</h3>
-                          <p>€10.50</p>
-                          
-                      </div>
-                  </center>
-              </div>
+
+    <?php
+      include 'connection.php';
+      $sql = "SELECT * FROM product";
+      $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+        ?>
+        <div class="col-md-3">
+          <div class="thumbnail">
+          <img src="
+          <?php 
+          echo $row['img']
+          ?>
+          ">
+            <div class="caption">
+              <h3>
+                <?php 
+                echo $row['name']
+                ?>
+              </h3>
+              <p><a href="productInfo.php?id=
+              <?php 
+                echo $row['id']
+                ?>
+              " class="btn btn-primary" role="button">Check item</a> </p>
+            </div>
           </div>
-        </div>
-    </body>
+          </div>
+          <?php 
+            }}
+          ?>
+
+      </div>
+    </div>
+  </body>
 </html>
+
