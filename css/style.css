@@ -1,0 +1,55 @@
+.navbar{
+    margin-bottom: 0px;
+}
+
+#bannerContent{
+    position:relative;
+    padding-top:6%;
+    padding-bottom:6%;
+    margin-top:12%;
+    margin-bottom:12%;
+    background-color:#2ba7fab3;
+    max-width:660px;
+}
+
+html { 
+    min-height:100%;
+    position:relative;    
+} 
+
+.form-group{
+	text-align: center;
+}
+
+h1{
+	text-align: center;
+}
+
+
+
+
+@media (min-width:320px){
+    #autoResize{
+        font-size:12px;
+    }
+}
+@media (min-width:481px){
+    #autoResize{
+        font-size:16px;
+    }
+}
+@media (min-width:641px){
+    #autoResize{
+        font-size:18px;
+    }
+}
+@media (min-width:961px){
+    #autoResize{
+        font-size:20px;
+    }
+}
+@media (min-width:1000px){
+    #autoResize{
+        font-size:26px;
+    }
+}
