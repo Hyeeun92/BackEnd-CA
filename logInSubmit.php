@@ -34,6 +34,7 @@ if(!empty($user)){
         session_start();
 
         $_SESSION['id'] = $user['user_id'];
+        $_SESSION['tableId'] = $user['id'];
         $_SESSION['type'] = $user['user_type'];
 
         header('Location: index.php');

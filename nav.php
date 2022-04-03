@@ -17,7 +17,6 @@
               if($_SESSION['type'] == "admin"){  
               ?>
                 <li><a href="addProduct.php"><span class="glyphicon glyphicon-plus"></span> Add product</a></li>
-                <li><a href="itemList.php"><span class="glyphicon glyphicon-th-list"></span> List of products</a></li>
                 <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               <?php } else { ?>
               <li><a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>

@@ -10,6 +10,7 @@
         <script type="text/javascript" src="bootstrap/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <link rel="stylesheet" href="css/index.css" type="text/css">
     </head>
 
     <body>
@@ -30,29 +31,47 @@
       $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
-        ?>
-        <div class="col-md-3">
-          <div class="thumbnail">
-          <img src="
-          <?php 
-          echo $row['img']
-          ?>
-          ">
-            <div class="caption">
-              <h3>
-                <?php 
-                echo $row['name']
-                ?>
-              </h3>
-              <p><a href="productInfo.php?id=
-              <?php 
-                echo $row['id']
-                ?>
-              " class="btn btn-primary" role="button">Check item</a> </p>
+            $image = $row['img'];
+            $id = $row['id'];
+            
+            echo "
+            <div class='col-md-3'>
+            <div class='thumbnail'>
+              <img src=images/".$image.">
             </div>
-          </div>
-          </div>
-          <?php 
+            <div class='caption'>
+              <h4>".$row['name']."</h4>
+              <br>
+              <form action='indexSubmit.php?id=".$id."' method='post'>
+              <select name='foodSize'>
+              <ul>
+              <option value='' disabled selected>Choose option</option>
+              ";
+              
+            $stmt = $conn->prepare("SELECT * FROM food_size WHERE product_id = ?");
+            $stmt->bind_param("i",$id);
+            $stmt->execute();
+            $response = $stmt->get_result();
+            if ($response->num_rows > 0) {
+            while($food = $response->fetch_assoc()){
+              echo "<option value=".$food['size'].">".$food['size']. " - €".$food['price']."
+              </option>";
+            }
+          }
+          session_start();
+          $userType = $_SESSION['type'];
+             echo " 
+            </select>";
+            if ($userType == 'normal'){
+               echo "
+               <br><br>
+               <input type='submit' name='submit' class='btn btn-primary' value='To Cart'></button>";
+            }
+            echo "
+           </form>
+           </div>
+          </div>";
+          
             }}
           ?>
 
