@@ -36,10 +36,13 @@
             
             echo "
             <div class='col-md-3'>
-            <div class='thumbnail'>
-              <img src=images/".$image.">
+            <div class='thumbnail' style=\"width:250px; height:200px;margin-left: auto;
+            margin-right: auto;\">
+              <img src=images/".$image." style=\"
+
+              height: 100%; width: 100%;\">
             </div>
-            <div class='caption'>
+            <div class='caption' style=\"text-align:center\">
               <h4>".$row['name']."</h4>
               <br>
               <form action='indexSubmit.php?id=".$id."' method='post'>
